@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CookieService } from 'ngx-cookie-service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { TokenInterceptor } from 'src/Interceptor/TokenInterceptor';
 
 const appRoutes: Routes = [
   {path: '',component: LoginComponent}
@@ -35,7 +36,13 @@ const appRoutes: Routes = [
     NgbModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    {
+    provide : HTTP_INTERCEPTORS,
+    useClass : TokenInterceptor,
+    multi :true
+  },
+  CookieService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
