@@ -16,6 +16,11 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { TokenInterceptor } from 'src/Interceptor/TokenInterceptor';
 import { HeaderComponent } from './header/header.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { AdminComponent } from './admin/admin.component';
+import { CcadminComponent } from './ccadmin/ccadmin.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { NurseComponent } from './nurse/nurse.component';
+import { PatientComponent } from './patient/patient.component';
 
 const appRoutes: Routes = [
   {path: 'login',component: LoginComponent},
@@ -27,7 +32,12 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    HomePageComponent
+    HomePageComponent,
+    AdminComponent,
+    CcadminComponent,
+    DoctorComponent,
+    NurseComponent,
+    PatientComponent
   ],
   imports: [ 
     BrowserModule,
