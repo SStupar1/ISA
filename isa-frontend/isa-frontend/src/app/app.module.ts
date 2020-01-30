@@ -1,18 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { MatTableModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
+import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { CookieService } from 'ngx-cookie-service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+
+const appRoutes: Routes = [
+  {path: '',component: LoginComponent}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    NgbModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
