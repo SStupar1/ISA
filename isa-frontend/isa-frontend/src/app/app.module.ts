@@ -16,11 +16,11 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { TokenInterceptor } from 'src/Interceptor/TokenInterceptor';
 import { HeaderComponent } from './header/header.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { AdminComponent } from './admin/admin.component';
-import { CcadminComponent } from './ccadmin/ccadmin.component';
-import { DoctorComponent } from './doctor/doctor.component';
-import { NurseComponent } from './nurse/nurse.component';
-import { PatientComponent } from './patient/patient.component';
+import { AdminComponent } from './home-page/admin/admin.component';
+import { CcadminComponent } from './home-page/ccadmin/ccadmin.component';
+import { DoctorComponent } from './home-page/doctor/doctor.component';
+import { NurseComponent } from './home-page/nurse/nurse.component';
+import { PatientComponent } from './home-page/patient/patient.component';
 
 const appRoutes: Routes = [
   {path: 'login',component: LoginComponent},
