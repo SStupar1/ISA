@@ -18,7 +18,8 @@ import { HeaderComponent } from './header/header.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
 const appRoutes: Routes = [
-  {path: '',component: LoginComponent}
+  {path: 'login',component: LoginComponent},
+  {path : '',component :HomePageComponent}
 ]
 
 @NgModule({

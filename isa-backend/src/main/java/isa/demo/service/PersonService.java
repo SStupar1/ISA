@@ -24,4 +24,7 @@ public class PersonService implements UserDetailsService {
             return person;
         }
     }
+
+    public Person findOneByUsername(String username) { return personRepository.findOneByUsername(username); }
+
 }

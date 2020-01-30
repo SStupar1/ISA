@@ -37,6 +37,9 @@ public class AuthenticationController {
     @Autowired
     private PersonService personService;
 
+
+    //funkcija koja obavlja login,i salje token na front da ga korisnik posle koristi prilikom autorizacije
+    //najveci deo koda dolazi iz spring security-a
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest)
             throws AuthenticationException, IOException {
@@ -70,6 +73,8 @@ public class AuthenticationController {
 
 
 
+    //ova funkcija dolazi is spring security-a i sluzi da se token refresuje kada istenke
+    // u ovom projektu nece biti koriscena
     @RequestMapping(value = "/refresh", method = RequestMethod.POST)
     public ResponseEntity<?> refreshAuthenticationToken(HttpServletRequest request) {
 
