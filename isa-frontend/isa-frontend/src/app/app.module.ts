@@ -14,6 +14,8 @@ import { HttpModule } from '@angular/http';
 import { CookieService } from 'ngx-cookie-service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { TokenInterceptor } from 'src/Interceptor/TokenInterceptor';
+import { HeaderComponent } from './header/header.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const appRoutes: Routes = [
   {path: '',component: LoginComponent}
@@ -22,7 +24,9 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    HomePageComponent
   ],
   imports: [ 
     BrowserModule,
@@ -45,4 +49,4 @@ const appRoutes: Routes = [
   CookieService,],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { } 
