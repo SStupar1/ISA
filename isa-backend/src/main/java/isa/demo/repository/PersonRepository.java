@@ -23,5 +23,10 @@ public interface PersonRepository extends JpaRepository<Person,Long> {
     @Query("SELECT p FROM Person p where p.class=?1")
     List<Person> findByDiscriminatorValue(String discriminatorValue);
 
+    @Modifying
+    @Transactional
+    @Query("update Person p set p.firstName = :firstName , p.lastName = :lastName,p.address = :address where p.id = :id")
+    int updateUser(@Param("firstName") String firstName,@Param("lastName") String lastName,@Param("address") String address,@Param("id") Long id);
+
 
 }

@@ -57,4 +57,25 @@ export class UserService {
         })
       )
   }
+  updateUser(
+    firstname: string,
+    lastname: string,
+    address: string,
+    id: number) {
+    return this.http.post("http://localhost:9090/api/person/update", {
+      firstName: firstname,
+      lastName: lastname,
+      address: address,
+      id: id
+    })
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      )
+  }
 }
