@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -28,5 +25,16 @@ public class PersonController {
         if (personRet == null)
             return null;
         return new ResponseEntity<>(new PersonDTOResponse(personRet), HttpStatus.OK);
+    }
+
+    @PostMapping(consumes = "application/json", value = "/update")
+    public ResponseEntity<PersonDTOResponse> updateMedicalStaff(@RequestBody PersonDTORequest person){
+        Person person1 = personService.findOneById(person.getId());
+        if(person1.getId() != null){
+            personService.updateUser(person.getFirstName(),person.getLastName(),person.getAddress(),person.getId());
+            person1 = personService.findOneById(person.getId());
+            return new ResponseEntity<>(new PersonDTOResponse(person1),HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(new PersonDTOResponse(),HttpStatus.BAD_REQUEST);
     }
 }
