@@ -25,7 +25,9 @@ import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   {path: 'login',component: LoginComponent},
-  {path : '',component :HomePageComponent}
+  {path: 'register', component : RegisterComponent},
+  {path : '',component :HomePageComponent},
+
 ]
 
 @NgModule({
