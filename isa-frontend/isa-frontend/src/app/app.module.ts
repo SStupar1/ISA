@@ -22,10 +22,12 @@ import { DoctorComponent } from './home-page/doctor/doctor.component';
 import { NurseComponent } from './home-page/nurse/nurse.component';
 import { PatientComponent } from './home-page/patient/patient.component';
 import { RegisterComponent } from './register/register.component';
+import { PendingUsersComponent } from './pending-users/pending-users.component';
 
 const appRoutes: Routes = [
   {path: 'login',component: LoginComponent},
   {path: 'register', component : RegisterComponent},
+  {path: 'pendingUsers',component : PendingUsersComponent},
   {path : '',component :HomePageComponent},
 
 ]
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     DoctorComponent,
     NurseComponent,
     PatientComponent,
-    RegisterComponent
+    RegisterComponent,
+    PendingUsersComponent
   ],
   imports: [ 
     BrowserModule,
