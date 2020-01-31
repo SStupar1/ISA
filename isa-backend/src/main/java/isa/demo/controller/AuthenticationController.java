@@ -1,5 +1,8 @@
 package isa.demo.controller;
 
+import isa.demo.dto.response.PersonDTOResponse;
+import isa.demo.exception.ResourceConflictException;
+import isa.demo.model.Patient;
 import isa.demo.model.Person;
 import isa.demo.model.security.UserTokenState;
 import isa.demo.security.Auth.JwtAuthenticationRequest;
@@ -38,8 +41,14 @@ public class AuthenticationController {
     private PersonService personService;
 
 
-    //funkcija koja obavlja login,i salje token na front da ga korisnik posle koristi prilikom autorizacije
-    //najveci deo koda dolazi iz spring security-a
+    /**
+     * funkcija koja obavlja login,i salje token na front da ga korisnik posle koristi prilikom autorizacije
+     * najveci deo koda dolazi iz spring security-a
+     * @param authenticationRequest
+     * @return
+     * @throws AuthenticationException
+     * @throws IOException
+     */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest)
             throws AuthenticationException, IOException {
@@ -58,7 +67,13 @@ public class AuthenticationController {
         return ResponseEntity.ok(new UserTokenState(jwt,expiresIn));
     }
 
-    /*@RequestMapping(value = "/register",method = RequestMethod.POST)
+    /**
+     * Funkcija za registrovanje pacijenata putem forme za registraciju na frontu
+     * @param patient
+     * @param ucBuilder
+     * @return
+     */
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
     public ResponseEntity<?> addUser(@RequestBody Patient patient, UriComponentsBuilder ucBuilder){
         Person person = personService.findOneByUsername(patient.getUsername());
         if(person != null){
@@ -68,13 +83,16 @@ public class AuthenticationController {
         Person person1 = personService.save(patient,"PENDING","ROLE_USER");
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(person1.getId()).toUri());
-        return new ResponseEntity<>(new PersonDTO(person1), HttpStatus.CREATED);
-    }*/
+        return new ResponseEntity<>(new PersonDTOResponse(person1), HttpStatus.CREATED);
+    }
 
 
-
-    //ova funkcija dolazi is spring security-a i sluzi da se token refresuje kada istenke
-    // u ovom projektu nece biti koriscena
+    /**
+     * ova funkcija dolazi is spring security-a i sluzi da se token refresuje kada istenke
+     * u ovom projektu nece biti koriscena
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/refresh", method = RequestMethod.POST)
     public ResponseEntity<?> refreshAuthenticationToken(HttpServletRequest request) {
 
