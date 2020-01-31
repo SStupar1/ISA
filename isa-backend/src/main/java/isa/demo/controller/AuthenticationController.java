@@ -110,7 +110,7 @@ public class AuthenticationController {
             return ResponseEntity.badRequest().body(userTokenState);
         }
     }
-    /*@RequestMapping(value = "/activateAccount/{id}",method = RequestMethod.GET,produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/activateAccount/{id}",method = RequestMethod.GET,produces = "text/html;charset=UTF-8")
     public String activateAccount(@PathVariable Long id){
         Person p = personService.findOneById(id);
         if(p.getStatus().equalsIgnoreCase("ACCEPTED")){
@@ -133,6 +133,6 @@ public class AuthenticationController {
         }
 
 
-    }*/
+    }
 
 }

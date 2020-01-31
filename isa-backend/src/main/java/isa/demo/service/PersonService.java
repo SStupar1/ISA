@@ -58,5 +58,8 @@ public class PersonService implements UserDetailsService {
     }
 
     public Person findOneByUsername(String username) { return personRepository.findOneByUsername(username); }
+    public int updatePersonStatus(String status,Long id) {return personRepository.updateUserStatus(status,id);}
+    public Person findOneById(Long id){ return personRepository.findOneById(id);}
+    public List<Person> findByType(String type) { return personRepository.findByDiscriminatorValue(type);}
 
 }
