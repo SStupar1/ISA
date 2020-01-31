@@ -32,4 +32,29 @@ export class UserService {
         })
       );
   }
+  registerUser(
+    firstname: string,
+    lastname: string,
+    address: string,
+    jmbg: string,
+    email: string,
+    password: string) {
+    return this.http.post("http://localhost:9090/auth/register", {
+      firstName: firstname,
+      lastName: lastname,
+      address: address,
+      jmbg: jmbg,
+      username: email,
+      password: password
+    })
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      )
+  }
 }

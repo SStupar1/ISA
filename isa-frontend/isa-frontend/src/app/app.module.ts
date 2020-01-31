@@ -21,6 +21,7 @@ import { CcadminComponent } from './home-page/ccadmin/ccadmin.component';
 import { DoctorComponent } from './home-page/doctor/doctor.component';
 import { NurseComponent } from './home-page/nurse/nurse.component';
 import { PatientComponent } from './home-page/patient/patient.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   {path: 'login',component: LoginComponent},
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     CcadminComponent,
     DoctorComponent,
     NurseComponent,
-    PatientComponent
+    PatientComponent,
+    RegisterComponent
   ],
   imports: [ 
     BrowserModule,
