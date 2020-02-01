@@ -1,8 +1,11 @@
 package isa.demo.controller;
 
 
+import isa.demo.dto.request.MedicalRecordDTORequest;
+import isa.demo.dto.response.MedicalRecordDTOResponse;
 import isa.demo.model.MedicalRecord;
 import isa.demo.model.Patient;
+import isa.demo.service.MedicalRecordService;
 import isa.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,15 +32,15 @@ public class MedicalRecordController {
 
         }
 
-        MedicalRecordDTO md = new MedicalRecordDTO(mr,personRet);
+        MedicalRecordDTOResponse md = new MedicalRecordDTOResponse(mr,personRet);
         return new ResponseEntity<>(md, HttpStatus.OK);
 
     }
 
     @RequestMapping(consumes = "application/json",value = "/update",method = RequestMethod.POST)
-    public ResponseEntity<?> update(@RequestBody MedicalRecordDTO recordDTO){
+    public ResponseEntity<?> update(@RequestBody MedicalRecordDTORequest recordDTO){
         medicalRecordService.updateMedicalRecord(recordDTO.getHeight(),recordDTO.getWeight(),recordDTO.getDiopter(), recordDTO.getAlergies(),recordDTO.getBloodType(),recordDTO.getId());
-        return new ResponseEntity<>(new MedicalRecordDTO(),HttpStatus.OK);
+        return new ResponseEntity<>(new MedicalRecordDTOResponse(),HttpStatus.OK);
 
     }
 }
