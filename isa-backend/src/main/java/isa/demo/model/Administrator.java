@@ -11,7 +11,7 @@ import javax.persistence.*;
 @DiscriminatorValue("A")
 public class Administrator extends Person {
 
-    //@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    //private Clinic clinic;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Clinic clinic;
 
 }

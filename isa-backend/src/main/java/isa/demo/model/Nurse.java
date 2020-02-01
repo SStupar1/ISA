@@ -18,12 +18,12 @@ public class Nurse extends Person {
     @Column(name="worktime_end")
     private String worktimeEnd;
 
-    /*@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Clinic clinic;
 
     @OneToMany(mappedBy = "staff",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     Set<Vacation> vacations = new HashSet<>();
 
     @OneToMany(mappedBy = "nurse",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    Set<Recipe> recipes = new HashSet<>();*/
+    Set<Recipe> recipes = new HashSet<>();
 }

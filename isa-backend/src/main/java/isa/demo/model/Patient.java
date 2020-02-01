@@ -16,7 +16,7 @@ public class Patient extends Person {
     @Column(name="jmbg")
     private String jmbg;
 
-    /*@ManyToMany(mappedBy = "patients")
+    @ManyToMany(mappedBy = "patients")
     Set<Clinic> clinics = new HashSet<Clinic>();
 
     @OneToOne(mappedBy = "patient")
@@ -29,5 +29,5 @@ public class Patient extends Person {
     Set<Appointment> appointments = new HashSet<>();
 
     @OneToMany(mappedBy = "patient",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    Set<Recipe> recies = new HashSet<>();*/
+    Set<Recipe> recies = new HashSet<>();
 }
