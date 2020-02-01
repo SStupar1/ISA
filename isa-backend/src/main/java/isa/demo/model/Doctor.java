@@ -18,7 +18,7 @@ public class Doctor extends Person {
     @Column(name="worktime_end")
     private String worktimeEnd;
 
-    /*@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Clinic clinic;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -28,5 +28,5 @@ public class Doctor extends Person {
     Set<Vacation> vacations = new HashSet<>();
 
     @OneToMany(mappedBy = "doctor",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    Set<MedicalExaminationReport>  medicalExaminationReports = new HashSet<>();*/
+    Set<MedicalExaminationReport>  medicalExaminationReports = new HashSet<>();
 }

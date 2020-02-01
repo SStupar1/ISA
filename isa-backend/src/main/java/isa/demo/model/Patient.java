@@ -31,5 +31,5 @@ public class Patient extends Person {
     Set<Appointment> appointments = new HashSet<>();
 
     @OneToMany(mappedBy = "patient",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    Set<Recipe> recies = new HashSet<>();*/
+    Set<Recipe> recies = new HashSet<>();
 }
