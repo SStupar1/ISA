@@ -25,6 +25,7 @@ import { RegisterComponent } from './register/register.component';
 import { PendingUsersComponent } from './pending-users/pending-users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MedicalRecordComponent } from './medical-record/medical-record.component';
+import { MedicalExaminationComponent } from './medical-examination/medical-examination.component';
 
 const appRoutes: Routes = [
   {path: 'login',component: LoginComponent},
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   {path: 'pendingUsers',component : PendingUsersComponent},
   {path : 'profile', component : ProfileComponent},
   {path : 'medicalRecord/:id', component : MedicalRecordComponent},
+  {path : 'medicalExamination/:id', component : MedicalExaminationComponent},
   {path : '',component :HomePageComponent},
 
 
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     PendingUsersComponent,
     ProfileComponent,
-    MedicalRecordComponent
+    MedicalRecordComponent,
+    MedicalExaminationComponent
   ],
   imports: [ 
     BrowserModule,
