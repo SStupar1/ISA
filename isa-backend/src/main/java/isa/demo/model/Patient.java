@@ -16,11 +16,13 @@ public class Patient extends Person {
     @Column(name="jmbg")
     private String jmbg;
 
-    /*@ManyToMany(mappedBy = "patients")
+    @ManyToMany(mappedBy = "patients")
     Set<Clinic> clinics = new HashSet<Clinic>();
 
     @OneToOne(mappedBy = "patient")
     private MedicalRecord medicalRecord;
+
+    /*
 
     @OneToMany(mappedBy = "patient",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     Set<MedicalExaminationReport> medicalExaminationReports = new HashSet<>();
