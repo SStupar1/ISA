@@ -78,4 +78,17 @@ export class UserService {
         })
       )
   }
+  getMedicalRecordInfo(id: Number) {
+    return this.http.get("http://localhost:9090/api/medicalRecord/getByPatientId?id=" + id)
+      .pipe(
+        map((response: any) => {
+          console.log(response)
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      );
+  }
 }
