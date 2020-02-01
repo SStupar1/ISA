@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MedicalRecordService } from '../services/medical-record/medical-record.service';
-import { MedicalExaminationService } from '../services/medical-examination/medical-examination.service';
 import { UserService } from '../service/user/user.service';
+import { MedicalRecordService } from '../service/medical-record/medical-record.service';
+import { MedicanExaminationService } from '../service/medical-examination/medican-examination.service';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class MedicalRecordComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private medicalRecordService: MedicalRecordService,
-    private medicalExaminationService: MedicalExaminationService) { }
+    private medicalExaminationService: MedicanExaminationService) { }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.url[1].path;
@@ -69,19 +69,6 @@ export class MedicalRecordComponent implements OnInit {
         alert(`Zdrastveni karton je uspesno azuriran!`);
       }
     )
-  }
-  getMedicalRecordInfo(id: Number) {
-    return this.http.get("http://localhost:9090/api/medicalRecord/getByPatientId?id=" + id)
-      .pipe(
-        map((response: any) => {
-          console.log(response)
-          const data = response
-          return data;
-        }),
-        catchError((err: any) => {
-          return throwError(JSON.parse(err.text));
-        })
-      );
   }
 
 }
