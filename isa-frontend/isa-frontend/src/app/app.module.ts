@@ -26,6 +26,10 @@ import { PendingUsersComponent } from './pending-users/pending-users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MedicalRecordComponent } from './medical-record/medical-record.component';
 import { MedicalExaminationComponent } from './medical-examination/medical-examination.component';
+import { AddClinicComponent } from './add-clinic/add-clinic.component';
+import { RegisterAdminComponent } from './register-admin/register-admin.component';
+import { RegisterCcadminComponent } from './register-ccadmin/register-ccadmin.component';
+import { AddMedicineAndDiagnosisComponent } from './add-medicine-and-diagnosis/add-medicine-and-diagnosis.component';
 
 const appRoutes: Routes = [
   {path: 'login',component: LoginComponent},
@@ -54,7 +58,11 @@ const appRoutes: Routes = [
     PendingUsersComponent,
     ProfileComponent,
     MedicalRecordComponent,
-    MedicalExaminationComponent
+    MedicalExaminationComponent,
+    AddClinicComponent,
+    RegisterAdminComponent,
+    RegisterCcadminComponent,
+    AddMedicineAndDiagnosisComponent
   ],
   imports: [ 
     BrowserModule,
