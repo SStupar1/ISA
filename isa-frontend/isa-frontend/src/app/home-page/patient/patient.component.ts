@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-patient',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientComponent implements OnInit {
 
-  constructor() { }
+  helper : any
+  id : any
+
+  constructor(private cookieService : CookieService) { }
 
   ngOnInit() {
+    this.helper = new JwtHelperService()
+    this.id = this.helper.decodeToken(this.cookieService.get('token')).id;
   }
 
 }

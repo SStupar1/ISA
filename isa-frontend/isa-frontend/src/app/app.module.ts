@@ -31,7 +31,7 @@ const appRoutes: Routes = [
   {path: 'register', component : RegisterComponent},
   {path: 'pendingUsers',component : PendingUsersComponent},
   {path : 'profile', component : ProfileComponent},
-  {path : 'medicalRecord', component : MedicalRecordComponent},
+  {path : 'medicalRecord/:id', component : MedicalRecordComponent},
   {path : '',component :HomePageComponent},
 
 
