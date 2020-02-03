@@ -45,6 +45,7 @@ const appRoutes: Routes = [
   { path: 'addAdmin', component: RegisterAdminComponent },
   { path: 'addCCAdmin', component: RegisterCcadminComponent },
   { path: 'searchClinics',component : SearchClinicComponent},
+  { path: 'changePassword', component : ChangePasswordComponent},
   { path: '', component: HomePageComponent },
 
 

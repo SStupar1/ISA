@@ -10,6 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @RestController
 @RequestMapping(value = "api/person",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,5 +39,17 @@ public class PersonController {
             return new ResponseEntity<>(new PersonDTOResponse(person1),HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>(new PersonDTOResponse(),HttpStatus.BAD_REQUEST);
+    }
+    @RequestMapping(consumes = "application/json",value ="/changePassword",method = RequestMethod.POST)
+    public ResponseEntity<?> updatePassword(@RequestBody PasswordChanger passwordChanger) {
+        personService.changePassword(passwordChanger.oldPassword, passwordChanger.newPassword);
+
+        Map<String, String> result = new HashMap<>();
+        result.put("result", "success");
+        return ResponseEntity.accepted().body(result);
+    }
+    static class PasswordChanger {
+        public String oldPassword;
+        public String newPassword;
     }
 }
