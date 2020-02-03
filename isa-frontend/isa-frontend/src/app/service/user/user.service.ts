@@ -78,6 +78,23 @@ export class UserService {
         })
       )
   }
+  updateUserPassword(
+    newPassword: string,
+    oldPassword: string) {
+    return this.http.post("http://localhost:9090/api/person/changePassword", {
+      newPassword: newPassword,
+      oldPassword: oldPassword
+    })
+      .pipe(
+        map((response: any) => {
+          const data = response;
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      )
+  }
   getMedicalRecordInfo(id: Number) {
     return this.http.get("http://localhost:9090/api/medicalRecord/getByPatientId?id=" + id)
       .pipe(

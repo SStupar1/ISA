@@ -31,6 +31,7 @@ import { RegisterAdminComponent } from './register-admin/register-admin.componen
 import { RegisterCcadminComponent } from './register-ccadmin/register-ccadmin.component';
 import { AddMedicineAndDiagnosisComponent } from './add-medicine-and-diagnosis/add-medicine-and-diagnosis.component';
 import { SearchClinicComponent } from './search-clinic/search-clinic.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -70,6 +71,7 @@ const appRoutes: Routes = [
     RegisterCcadminComponent,
     AddMedicineAndDiagnosisComponent,
     SearchClinicComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
