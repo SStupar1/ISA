@@ -1,0 +1,47 @@
+<app-header></app-header>
+<form class="form-inline md-form mr-auto mb-4" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <table>
+        <tr>
+            <td><input class="form-control mr-sm-2" type="text" [(ngModel)]="ime" name="ime" placeholder="Ime"
+                    aria-label="Search"></td>
+        </tr>
+        <tr>
+            <td><input class="form-control mr-sm-2" type="text" [(ngModel)]="prezime" name="prezime"
+                    placeholder="Prezime" aria-label="Search"></td>
+        </tr>
+        <tr>
+            <td><input class="form-control mr-sm-2" type="text" [(ngModel)]="jmbg" name="jmbg" placeholder="JMBG"
+                    aria-label="Search"></td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-primary" type="submit" >Pretraži</button></td>
+        </tr>
+    </table>
+</form>
+
+<hr>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ime</th>
+            <th scope="col">Prezime</th>
+            <th scope="col">JMBG</th>
+            <th scope="col">Zdravstveni karton</th>
+            <th scope="col">Pregled</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let user of patients; let i = index">
+            <tr>
+                <th scope="row">{{i+1}}</th>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.jmbg}}</td>
+                <td><button type="button" class="btn btn-primary" (click)="medicalRecord(user.id)">Zdravstveni karton</button></td>
+                <td *ngIf='currentUser()'><button type="button" class="btn btn-primary" (click)="startExamination(user.id)">Zapocni pregled</button></td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
