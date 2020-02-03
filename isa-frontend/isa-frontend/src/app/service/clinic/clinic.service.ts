@@ -34,4 +34,77 @@ export class ClinicService {
         })
       )
   }
+  searchClinics(date:string,type:string) {
+    return this.http.get("http://localhost:9090/api/clinic/findClinic?date="+date+"&type="+type)
+    .pipe(
+      map((response: any) => {
+        const data = response;
+        return data;
+      }),
+      catchError((err: any) => {
+        return throwError(JSON.parse(err.text));
+      })
+    )
+  }
+
+  getDoctors(clinicname:string, date:string, type:string) {
+    return this.http.get("http://localhost:9090/api/clinic/findClinic/doctors?clinicName="+clinicname+"&date="+date+"&type="+type)
+    .pipe(
+      map((response: any) => {
+        const data = response;
+        return data;
+      }),
+      catchError((err: any) => {
+        return throwError(JSON.parse(err.text));
+      })
+    )
+  }
+
+  getClinic() {
+    return this.http.get("http://localhost:9090/api/clinic")
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      );
+  }
+
+  getClinics() {
+    return this.http.get("http://localhost:9090/api/clinic/getClinics")
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      );
+  }
+
+  updateClinic(
+    name: string,
+    address: string,
+    description: string,
+    id: number) {
+    return this.http.post("http://localhost:9090/api/clinic/update", {
+      name: name,
+      address: address,
+      description: description,
+      id: id
+    })
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      )
+  }
 }
