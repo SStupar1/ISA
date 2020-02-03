@@ -32,6 +32,8 @@ import { RegisterCcadminComponent } from './register-ccadmin/register-ccadmin.co
 import { AddMedicineAndDiagnosisComponent } from './add-medicine-and-diagnosis/add-medicine-and-diagnosis.component';
 import { SearchClinicComponent } from './search-clinic/search-clinic.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AllPatientsComponent } from './all-patients/all-patients.component';
+import { SearchPatientsComponent } from './search-patients/search-patients.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -46,6 +48,7 @@ const appRoutes: Routes = [
   { path: 'addCCAdmin', component: RegisterCcadminComponent },
   { path: 'searchClinics',component : SearchClinicComponent},
   { path: 'changePassword', component : ChangePasswordComponent},
+  { path: 'patients', component: SearchPatientsComponent },
   { path: '', component: HomePageComponent },
 
 
@@ -73,6 +76,8 @@ const appRoutes: Routes = [
     AddMedicineAndDiagnosisComponent,
     SearchClinicComponent,
     ChangePasswordComponent,
+    AllPatientsComponent,
+    SearchPatientsComponent,
   ],
   imports: [
     BrowserModule,

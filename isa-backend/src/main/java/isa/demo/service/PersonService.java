@@ -3,6 +3,7 @@ package isa.demo.service;
 import isa.demo.dto.request.AdministratorDTORequest;
 import isa.demo.model.Administrator;
 import isa.demo.model.ClinicsAdministrator;
+import isa.demo.model.Patient;
 import isa.demo.model.Person;
 import isa.demo.model.security.Authority;
 import isa.demo.repository.PersonRepository;
@@ -131,6 +132,7 @@ public class PersonService implements UserDetailsService {
 
     }
 
+    public List<Patient> findPatients() { return personRepository.findPatients();}
     public Person findOneByUsername(String username) { return personRepository.findOneByUsername(username); }
     public int updatePersonStatus(String status,Long id) {return personRepository.updateUserStatus(status,id);}
     public Person findOneById(Long id){ return personRepository.findOneById(id);}

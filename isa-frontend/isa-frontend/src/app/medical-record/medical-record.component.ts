@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../service/user/user.service';
 import { MedicalRecordService } from '../service/medical-record/medical-record.service';
 import { MedicanExaminationService } from '../service/medical-examination/medican-examination.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -24,16 +26,28 @@ export class MedicalRecordComponent implements OnInit {
   diopter: number;
   disabledp = true;
   medicalExaminations: any;
+  helper : any;
+  userType : any;
 
   constructor(private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private medicalRecordService: MedicalRecordService,
-    private medicalExaminationService: MedicanExaminationService) { }
+    private medicalExaminationService: MedicanExaminationService,
+    private cookieService : CookieService) { }
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.url[1].path;
+    this.helper = new JwtHelperService();
+    this.userType = this.helper.decodeToken(this.cookieService.get('token')).type;
+  this.id = this.activatedRoute.snapshot.url[1].path;
     this.getUser();
     this.getMedicalExaminations();
+  }
+  doktor() {
+    if(this.userType === "D"){
+      return true;
+    }else{
+      return false;
+    }
   }
   getUser() {
     this.userService.getMedicalRecordInfo(this.id)

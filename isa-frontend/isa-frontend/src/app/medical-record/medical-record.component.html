@@ -28,32 +28,35 @@
             <td><input type="text" [(ngModel)]="bloodType" [disabled]="disabledp"></td>
         </tr>
         <tr>
-            <td><button (click)="izmeni()">Izmeni</button></td>
-            <td><button (click)="sacuvaj()">Sacuvaj izmene</button></td>
+            <td *ngIf='doktor()'><button (click)="izmeni()">Izmeni</button></td>
+            <td *ngIf='doktor()'><button (click)="sacuvaj()">Sacuvaj izmene</button></td>
         </tr>
     </table>
 </div>
 <div class="treci">
     Izvestaji o pregledima:
     <table class="table">
-            <thead>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Prepisan lek</th>
+                <th scope="col">Dijagnoza</th>
+            </tr>
+        </thead>
+        <tbody>
+            <div *ngIf="medicalExaminations">
+            <ng-container *ngFor="let me of medicalExaminations; let i = index">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Opis</th>
-                    <th scope="col">Prepisan lek</th>
-                    <th scope="col">Dijagnoza</th>
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{me.description}}</td>
+                    <td>{{me.medicine}}</td>
+                    <td>{{me.diagnosis}}</td>
                 </tr>
-            </thead>
-            <tbody>
-                    <ng-container *ngFor="let me of medicalExaminations; let i = index">
-                            <tr>
-                                <th scope="row">{{i+1}}</th>
-                                <td>{{me.description}}</td>
-                                <td>{{me.medicine}}</td>
-                                <td>{{me.diagnosis}}</td>
-                            </tr>
-                        </ng-container>
-            </tbody>
-        </table>
-    
+            
+            </ng-container>
+        </div>
+        </tbody>
+    </table>
+
 </div>
