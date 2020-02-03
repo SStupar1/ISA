@@ -1,6 +1,11 @@
 package isa.demo.controller;
 
+import isa.demo.dto.request.AdministratorDTORequest;
+import isa.demo.dto.response.AdministratorDTOResponse;
 import isa.demo.dto.response.PersonDTOResponse;
+import isa.demo.exception.ResourceConflictException;
+import isa.demo.model.Administrator;
+import isa.demo.model.ClinicsAdministrator;
 import isa.demo.model.Patient;
 import isa.demo.model.Person;
 import isa.demo.service.EmailService;
@@ -77,5 +82,39 @@ public class AdministratorController {
             }
         }
         return new ResponseEntity<>(patients,HttpStatus.OK);
+    }
+    /**
+     *
+     * Funkcija za registrovanje Administratora klinike
+     * @param administratorDTO
+     * @return
+     */
+    @RequestMapping(consumes = "application/json",value = "/registerAdmin",method = RequestMethod.POST)
+    public ResponseEntity<?> registerAdmin(@RequestBody AdministratorDTORequest administratorDTO){
+        Administrator administrator1 = (Administrator) personService.findOneByUsername(administratorDTO.getUsername());
+        if(administrator1 != null){
+            throw new ResourceConflictException(administratorDTO.getId(), "Username already exists");
+        }
+        Administrator person1 = (Administrator) personService.saveAdministrator(administratorDTO,"PENDING","ROLE_ADMIN");
+        //HttpHeaders headers = new HttpHeaders();
+        //headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(person1.getId()).toUri());
+        return new ResponseEntity<>(new AdministratorDTOResponse(person1), HttpStatus.CREATED);
+
+    }
+
+    /**
+     * Funkcija za registraovanje CCA
+     * @param administratorDTO
+     * @return
+     */
+    @RequestMapping(consumes = "application/json",value = "/registerClinicCentreAdmin",method = RequestMethod.POST)
+    public ResponseEntity<?> registerClinicCentreAdmin(@RequestBody AdministratorDTORequest administratorDTO){
+        Person person= personService.findOneByUsername(administratorDTO.getUsername());
+        if(person != null){
+            throw new ResourceConflictException(administratorDTO.getId(), "Username already exists");
+        }
+        ClinicsAdministrator person1 = (ClinicsAdministrator) personService.saveClinicCentreAdministrator(administratorDTO,"PENDING","ROLE_ADMIN");
+        return new ResponseEntity<>(new AdministratorDTOResponse(person1), HttpStatus.CREATED);
+
     }
 }

@@ -1,9 +1,18 @@
 package isa.demo.service;
 
+import isa.demo.dto.request.AdministratorDTORequest;
+import isa.demo.model.Administrator;
+import isa.demo.model.ClinicsAdministrator;
 import isa.demo.model.Person;
 import isa.demo.model.security.Authority;
 import isa.demo.repository.PersonRepository;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,14 +24,22 @@ import java.util.List;
 @Service
 public class PersonService implements UserDetailsService {
 
-    @Autowired
-    PersonRepository personRepository;
+    protected final Log LOGGER = LogFactory.getLog(getClass());
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PersonRepository personRepository;
 
     @Autowired
-    AuthorityService authorityService;
+    private ClinicService clinicService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthorityService authorityService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
 
     @Override
@@ -54,6 +71,63 @@ public class PersonService implements UserDetailsService {
         person.setAuthorities(auth);
 
         return personRepository.save(person);
+
+    }
+    public Person saveAdministrator(AdministratorDTORequest a, String status, String role){
+        Administrator admin = new Administrator();
+        admin.setFirstName(a.getFirstName());
+        admin.setLastName(a.getLastName());
+        admin.setUsername(a.getUsername());
+        admin.setPassword(passwordEncoder.encode("123"));
+        admin.setAddress(a.getAddress());
+        admin.setClinic(clinicService.findOneById(a.getClinic_id()));
+        admin.setStatus(status);
+        List<Authority> auth =authorityService.findByName(role);
+        admin.setAuthorities(auth);
+        admin.setEnabled(true);
+
+        return personRepository.save(admin);
+
+    }
+    public Person saveClinicCentreAdministrator(AdministratorDTORequest a,String status,String role){
+        ClinicsAdministrator admin = new ClinicsAdministrator();
+        admin.setFirstName(a.getFirstName());
+        admin.setLastName(a.getLastName());
+        admin.setUsername(a.getUsername());
+        admin.setPassword(passwordEncoder.encode("123"));
+        admin.setAddress(a.getAddress());
+        admin.setStatus(status);
+        List<Authority> auth =authorityService.findByName(role);
+        admin.setAuthorities(auth);
+        admin.setEnabled(true);
+
+        return personRepository.save(admin);
+
+    }
+    public void changePassword(String oldPassword, String newPassword) {
+
+        Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+
+        String username = currentUser.getName();
+
+        if (authenticationManager != null) {
+            LOGGER.debug("Re-authenticating user '" + username + "' for password change request.");
+
+            final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,oldPassword));
+        } else {
+
+            LOGGER.debug("No authentication manager set. can't change Password!");
+
+            return;
+        }
+
+        LOGGER.debug("Changing password for user '" + username + "'");
+
+        Person user = (Person) loadUserByUsername(username);
+
+        user.setPassword(passwordEncoder.encode(newPassword));
+        user.setStatus("ACTIVE");
+        personRepository.save(user);
 
     }
 

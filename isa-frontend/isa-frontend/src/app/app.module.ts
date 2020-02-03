@@ -38,6 +38,10 @@ const appRoutes: Routes = [
   {path : 'profile', component : ProfileComponent},
   {path : 'medicalRecord/:id', component : MedicalRecordComponent},
   {path : 'medicalExamination/:id', component : MedicalExaminationComponent},
+  { path: 'addMedicineAndDiagnosis', component: AddMedicineAndDiagnosisComponent },
+  { path: 'addClinic', component: AddClinicComponent },
+  { path: 'addAdmin', component: RegisterAdminComponent },
+  { path: 'addCCAdmin', component: RegisterCcadminComponent },
   {path : '',component :HomePageComponent},
 
 
@@ -62,7 +66,7 @@ const appRoutes: Routes = [
     AddClinicComponent,
     RegisterAdminComponent,
     RegisterCcadminComponent,
-    AddMedicineAndDiagnosisComponent
+    AddMedicineAndDiagnosisComponent,
   ],
   imports: [ 
     BrowserModule,

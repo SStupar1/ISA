@@ -59,4 +59,49 @@ export class AdminService {
         })
       );
   }
+  registerAdmin(
+    firstname: string,
+    lastname: string,
+    address: string,
+    username: string,
+    clinic : string) {
+    return this.http.post("http://localhost:9090/api/administrator/registerAdmin", {
+      firstName: firstname,
+      lastName: lastname,
+      address: address,
+      username: username,
+      clinic_id : clinic
+    })
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      )
+  }
+  registerClinicCentreAdmin(
+    firstname: string,
+    lastname: string,
+    address: string,
+    username: string,
+    ) {
+    return this.http.post("http://localhost:9090/api/administrator/registerClinicCentreAdmin", {
+      firstName: firstname,
+      lastName: lastname,
+      address: address,
+      username: username,
+    })
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      )
+  }
 }
