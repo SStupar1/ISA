@@ -12,7 +12,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CookieService } from 'ngx-cookie-service';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/Interceptor/TokenInterceptor';
 import { HeaderComponent } from './header/header.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -30,19 +30,21 @@ import { AddClinicComponent } from './add-clinic/add-clinic.component';
 import { RegisterAdminComponent } from './register-admin/register-admin.component';
 import { RegisterCcadminComponent } from './register-ccadmin/register-ccadmin.component';
 import { AddMedicineAndDiagnosisComponent } from './add-medicine-and-diagnosis/add-medicine-and-diagnosis.component';
+import { SearchClinicComponent } from './search-clinic/search-clinic.component';
 
 const appRoutes: Routes = [
-  {path: 'login',component: LoginComponent},
-  {path: 'register', component : RegisterComponent},
-  {path: 'pendingUsers',component : PendingUsersComponent},
-  {path : 'profile', component : ProfileComponent},
-  {path : 'medicalRecord/:id', component : MedicalRecordComponent},
-  {path : 'medicalExamination/:id', component : MedicalExaminationComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'pendingUsers', component: PendingUsersComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'medicalRecord/:id', component: MedicalRecordComponent },
+  { path: 'medicalExamination/:id', component: MedicalExaminationComponent },
   { path: 'addMedicineAndDiagnosis', component: AddMedicineAndDiagnosisComponent },
   { path: 'addClinic', component: AddClinicComponent },
   { path: 'addAdmin', component: RegisterAdminComponent },
   { path: 'addCCAdmin', component: RegisterCcadminComponent },
-  {path : '',component :HomePageComponent},
+  { path: 'searchClinics',component : SearchClinicComponent},
+  { path: '', component: HomePageComponent },
 
 
 ]
@@ -67,13 +69,14 @@ const appRoutes: Routes = [
     RegisterAdminComponent,
     RegisterCcadminComponent,
     AddMedicineAndDiagnosisComponent,
+    SearchClinicComponent,
   ],
-  imports: [ 
+  imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    OwlDateTimeModule, 
+    OwlDateTimeModule,
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
     MatTableModule,
@@ -82,11 +85,11 @@ const appRoutes: Routes = [
   ],
   providers: [
     {
-    provide : HTTP_INTERCEPTORS,
-    useClass : TokenInterceptor,
-    multi :true
-  },
-  CookieService,],
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    CookieService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { } 
