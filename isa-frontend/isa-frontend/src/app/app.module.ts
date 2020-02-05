@@ -36,6 +36,9 @@ import { AllPatientsComponent } from './all-patients/all-patients.component';
 import { SearchPatientsComponent } from './search-patients/search-patients.component';
 import { PredefAppointmentsComponent } from './predef-appointments/predef-appointments.component';
 import { CreatePredefAppointmentComponent } from './create-predef-appointment/create-predef-appointment.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -53,7 +56,8 @@ const appRoutes: Routes = [
   { path: 'patients', component: SearchPatientsComponent },
   { path: 'predefAppointments',component : PredefAppointmentsComponent},
   { path: 'createPredefAppointment',component : CreatePredefAppointmentComponent},
-  { path: '', component: HomePageComponent },
+  { path: 'calendar',component : CalendarComponent},
+  { path: '', component: HomePageComponent }, 
 
 
 ]
@@ -84,6 +88,7 @@ const appRoutes: Routes = [
     SearchPatientsComponent,
     PredefAppointmentsComponent,
     CreatePredefAppointmentComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +100,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatTableModule,
     NgbModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+
   ],
   providers: [
     {
