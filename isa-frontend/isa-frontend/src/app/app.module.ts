@@ -40,6 +40,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { PatientsDoctorHomePageComponent } from './patients-doctor-home-page/patients-doctor-home-page.component';
+import {SearchDoctorsComponent} from './search-doctors/search-doctors.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -58,7 +59,9 @@ const appRoutes: Routes = [
   { path: 'predefAppointments',component : PredefAppointmentsComponent},
   { path: 'createPredefAppointment',component : CreatePredefAppointmentComponent},
   { path: 'calendar',component : CalendarComponent},
+  { path : 'searchDoctors',component :SearchDoctorsComponent},
   { path: '', component: HomePageComponent }, 
+  
 
 
 ]
@@ -91,6 +94,7 @@ const appRoutes: Routes = [
     CreatePredefAppointmentComponent,
     CalendarComponent,
     PatientsDoctorHomePageComponent,
+    SearchDoctorsComponent,
   ],
   imports: [
     BrowserModule,
