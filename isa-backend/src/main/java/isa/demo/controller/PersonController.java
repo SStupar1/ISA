@@ -1,7 +1,9 @@
 package isa.demo.controller;
 
 import isa.demo.dto.request.PersonDTORequest;
+import isa.demo.dto.response.AdministratorDTOResponse;
 import isa.demo.dto.response.PersonDTOResponse;
+import isa.demo.model.Administrator;
 import isa.demo.model.Doctor;
 import isa.demo.model.Person;
 import isa.demo.service.PersonService;
@@ -64,4 +66,13 @@ public class PersonController {
         }
         return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
     }
+    @RequestMapping(value="/getAdminByEmail",method = RequestMethod.GET)
+    public ResponseEntity<?> getAdminByEmail(@RequestParam String mail) {
+        Administrator a = personService.findAdmin(mail).get(0);
+        if (a == null)
+            return null;
+        return new ResponseEntity<>(new AdministratorDTOResponse(a), HttpStatus.OK);
+
+    }
+
 }

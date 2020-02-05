@@ -31,7 +31,7 @@ public class AdministratorDTOResponse {
         this.clinic_id = clinic_id;
     }
     public AdministratorDTOResponse(Administrator a){
-        this(a.getId(),a.getFirstName(),a.getLastName(),a.getAddress(),a.getPassword(),a.getUsername(),a.getStatus(),a.getId());
+        this(a.getId(),a.getFirstName(),a.getLastName(),a.getAddress(),a.getPassword(),a.getUsername(),a.getStatus(),a.getClinic().getId());
     }
     public AdministratorDTOResponse(ClinicsAdministrator a){
         this(a.getId(),a.getFirstName(),a.getLastName(),a.getAddress(),a.getPassword(),a.getUsername(),a.getStatus(),a.getId());
