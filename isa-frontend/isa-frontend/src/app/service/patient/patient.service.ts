@@ -34,4 +34,17 @@ export class PatientService {
       })
     )
   }
+  searchDoctors(ime:string,prezime:string,ocena:string) {
+    return this.http.get("http://localhost:9090/api/doctor/findDoctors?name="+ime+
+    "&lastname="+prezime+"&ocena="+ocena)
+    .pipe(
+      map((response: any) => {
+        const data = response;
+        return data;
+      }),
+      catchError((err: any) => {
+        return throwError(JSON.parse(err.text));
+      })
+    )
+  }
 }
