@@ -34,6 +34,8 @@ import { SearchClinicComponent } from './search-clinic/search-clinic.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AllPatientsComponent } from './all-patients/all-patients.component';
 import { SearchPatientsComponent } from './search-patients/search-patients.component';
+import { PredefAppointmentsComponent } from './predef-appointments/predef-appointments.component';
+import { CreatePredefAppointmentComponent } from './create-predef-appointment/create-predef-appointment.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -49,6 +51,8 @@ const appRoutes: Routes = [
   { path: 'searchClinics',component : SearchClinicComponent},
   { path: 'changePassword', component : ChangePasswordComponent},
   { path: 'patients', component: SearchPatientsComponent },
+  { path: 'predefAppointments',component : PredefAppointmentsComponent},
+  { path: 'createPredefAppointment',component : CreatePredefAppointmentComponent},
   { path: '', component: HomePageComponent },
 
 
@@ -78,6 +82,8 @@ const appRoutes: Routes = [
     ChangePasswordComponent,
     AllPatientsComponent,
     SearchPatientsComponent,
+    PredefAppointmentsComponent,
+    CreatePredefAppointmentComponent,
   ],
   imports: [
     BrowserModule,

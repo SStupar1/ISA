@@ -1,10 +1,7 @@
 package isa.demo.service;
 
 import isa.demo.dto.request.AdministratorDTORequest;
-import isa.demo.model.Administrator;
-import isa.demo.model.ClinicsAdministrator;
-import isa.demo.model.Patient;
-import isa.demo.model.Person;
+import isa.demo.model.*;
 import isa.demo.model.security.Authority;
 import isa.demo.repository.PersonRepository;
 import org.apache.commons.logging.Log;
@@ -138,5 +135,7 @@ public class PersonService implements UserDetailsService {
     public Person findOneById(Long id){ return personRepository.findOneById(id);}
     public List<Person> findByType(String type) { return personRepository.findByDiscriminatorValue(type);}
     public int updateUser(String firstName,String lastName,String address,long id) { return personRepository.updateUser(firstName,lastName,address,id); }
+    public List<Doctor  > findDoctors() { return personRepository.findDoctors();}
+
 
 }
