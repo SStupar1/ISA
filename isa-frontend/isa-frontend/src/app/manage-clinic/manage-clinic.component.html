@@ -1,0 +1,18 @@
+<app-header></app-header>
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Ime</td>
+      <td><input type="text" [(ngModel)]="ime"></td>
+    </tr>
+    <tr>
+      <td>Adresa</td>
+      <td><input type="text" (change)="eventHandler()" [(ngModel)]="adresa"></td>
+    </tr>
+    <tr>
+      <td>Opis</td>
+      <td><input type="text" [(ngModel)]="opis"></td>
+    </tr>
+    <button class="btn btn-primary" (click)="onSubmit()">Sacuvaj</button>
+  </tbody>
+</table>

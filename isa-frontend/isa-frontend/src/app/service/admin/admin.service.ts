@@ -104,4 +104,16 @@ export class AdminService {
         })
       )
   }
+  getAdminByMail(email: string) {
+    return this.http.get("http://localhost:9090/api/person/getAdminByEmail?mail="+email)
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      );
+  }
 }

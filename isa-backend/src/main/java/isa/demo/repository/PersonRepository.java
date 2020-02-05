@@ -1,5 +1,6 @@
 package isa.demo.repository;
 
+import isa.demo.model.Administrator;
 import isa.demo.model.Doctor;
 import isa.demo.model.Patient;
 import isa.demo.model.Person;
@@ -27,18 +28,16 @@ public interface PersonRepository extends JpaRepository<Person,Long> {
     List<Patient> findPatients();
     @Query("SELECT p FROM Person p where p.class='D'")
     List<Doctor> findDoctors();
-
-
+    @Query("SELECT p FROM Person p where p.class='A' and p.username=?1")
+    List<Administrator> findAdmin(String mail);
     @Modifying
     @Transactional
     @Query("update Person p set p.status = :status where p.id = :id")
     int updateUserStatus(@Param("status") String status,@Param("id") Long id);
-
     @Modifying
     @Transactional
     @Query("update Person p set p.password = :password where p.id = :id")
     int updatePassword(@Param("password") String password,@Param("id") Long id);
-
     @Modifying
     @Transactional
     @Query("update Person p set p.firstName = :firstName , p.lastName = :lastName,p.address = :address where p.id = :id")

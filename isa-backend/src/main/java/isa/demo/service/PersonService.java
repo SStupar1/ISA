@@ -136,6 +136,7 @@ public class PersonService implements UserDetailsService {
     public List<Person> findByType(String type) { return personRepository.findByDiscriminatorValue(type);}
     public int updateUser(String firstName,String lastName,String address,long id) { return personRepository.updateUser(firstName,lastName,address,id); }
     public List<Doctor  > findDoctors() { return personRepository.findDoctors();}
+    public List<Administrator> findAdmin(String mail) {return personRepository.findAdmin(mail);}
 
 
 }
