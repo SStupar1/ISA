@@ -47,4 +47,19 @@ public class AppointmentController {
         appointmentService.createPredef(req);
         return new ResponseEntity<>(null,HttpStatus.OK);
     }
+    @RequestMapping(value="/getAppointmentsForDoctor",method = RequestMethod.GET)
+    public ResponseEntity<?> getAppointmentsForDoctor(@RequestParam String doctorId){
+        Long id = Long.parseLong(doctorId.substring(1));
+        List<Appointment> apps = appointmentService.findAllByDoctorId(id);
+        List<AppointmentDTOResponse> appDto = new ArrayList<>();
+        for (Appointment a:apps) {
+            if(!a.getStatus().equals("") || a.getPatient() == null)
+                continue;
+
+            AppointmentDTOResponse ap = new AppointmentDTOResponse(a);
+
+            appDto.add(ap);
+        }
+        return new ResponseEntity<>(appDto, HttpStatus.OK);
+    }
 }
