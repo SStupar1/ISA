@@ -1,15 +1,13 @@
 package isa.demo.controller;
 
 import isa.demo.dto.request.AdministratorDTORequest;
+import isa.demo.dto.request.MakeAppointmentDTORequest;
 import isa.demo.dto.response.AdministratorDTOResponse;
+import isa.demo.dto.response.AppointmentRequestDTOResponse;
 import isa.demo.dto.response.PersonDTOResponse;
 import isa.demo.exception.ResourceConflictException;
-import isa.demo.model.Administrator;
-import isa.demo.model.ClinicsAdministrator;
-import isa.demo.model.Patient;
-import isa.demo.model.Person;
-import isa.demo.service.EmailService;
-import isa.demo.service.PersonService;
+import isa.demo.model.*;
+import isa.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +24,15 @@ public class AdministratorController {
 
     @Autowired
     EmailService emailService;
+
+    @Autowired
+    AppointmentRequestService appointmentRequestService;
+
+    @Autowired
+    RoomService roomService;
+
+    @Autowired
+    AppointmentService appointmentService;
 
     /**
      *
@@ -117,4 +124,33 @@ public class AdministratorController {
         return new ResponseEntity<>(new AdministratorDTOResponse(person1), HttpStatus.CREATED);
 
     }
+    @RequestMapping(value = "/getAppointmentRequests",method = RequestMethod.GET)
+    public ResponseEntity<?> getAppointmentRequests(){
+        List<AppointmentRequest> requests = appointmentRequestService.findAll();
+        List<AppointmentRequestDTOResponse> responses = new ArrayList<>();
+        for(AppointmentRequest a : requests){
+            responses.add(new AppointmentRequestDTOResponse(a.getId(),a.getDoctor_id(),a.getPatient_id(),a.getDate(),a.getAppointment_type()));
+        }
+
+        return new ResponseEntity<>(responses,HttpStatus.OK);
+    }
+    @RequestMapping(consumes = "application/json",value ="/makeAppointment",method = RequestMethod.POST)
+    public ResponseEntity<?> makeAppoitment(@RequestBody MakeAppointmentDTORequest request){
+        Appointment a = new Appointment();
+        Doctor d = (Doctor) personService.findOneById(request.getDoctor());
+        Patient p = (Patient) personService.findOneById(request.getPatient());
+        Room r = roomService.findOneById(request.getRoom());
+        appointmentRequestService.delete(request.getAppointmentRequestId());
+        a.setPatient(p);
+        a.setDoctor(d);
+        a.setRoom(r);
+        a.setStatus("ACTIVE");
+        a.setType(request.getType());
+        a.setDate(request.getDate());
+        a.setDiscount(10);
+        a.setPrice(10000);
+        Appointment a1 = appointmentService.save(a);
+        return new ResponseEntity<>(null,HttpStatus.OK);
+    }
+
 }
