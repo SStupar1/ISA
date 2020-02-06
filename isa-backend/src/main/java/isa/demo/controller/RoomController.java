@@ -1,6 +1,7 @@
 package isa.demo.controller;
 
 import isa.demo.dto.request.FindRoomDTORequest;
+import isa.demo.dto.request.RoomDTORequest;
 import isa.demo.dto.response.FindRoomDTOResponse;
 import isa.demo.model.Appointment;
 import isa.demo.model.Room;
@@ -58,5 +59,11 @@ public class RoomController {
         }
         return new ResponseEntity<>(res,HttpStatus.OK);
 
+    }
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResponseEntity<?> createRoom(@RequestBody RoomDTORequest room) {
+        Room r = roomService.save(room);
+
+        return new ResponseEntity<>(r, HttpStatus.CREATED);
     }
 }

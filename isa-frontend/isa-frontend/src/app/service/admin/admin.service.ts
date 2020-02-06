@@ -116,4 +116,30 @@ export class AdminService {
         })
       );
   }
+  createDoctor(
+    firstname: string,
+    lastname: string,
+    address: string,
+    username: string,
+    clinic_id: any
+  ) {
+    return this.http.post("http://localhost:9090/api/administrator/createDoctor", {
+      firstName: firstname,
+      lastName: lastname,
+      address: address,
+      password: "123",
+      username: username,
+      status: "PENDING",
+      clinic_id: clinic_id
+    })
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      )
+  }
 }

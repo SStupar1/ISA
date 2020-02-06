@@ -38,4 +38,20 @@ export class RoomService {
       })
     )
   }
+  create(name: any, number: any, id: any) {
+    return this.http.post("http://localhost:9090/api/room/create", {
+      name:name,
+      number:number,
+      id:id
+    })
+      .pipe(
+        map((response: any) => {
+          const data = response;
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(err);
+        })
+      )
+  }
 }
