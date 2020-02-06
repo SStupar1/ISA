@@ -5,6 +5,8 @@ import { MedicineService } from '../service/medicine/medicine.service';
 import { DiagnosisService } from '../service/diagnosis/diagnosis.service';
 import { MedicanExaminationService } from '../service/medical-examination/medican-examination.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AppoinmentRequestService } from '../service/appointment-request/appoinment-request.service';
+import { AppointmentTypeService } from '../service/appointment-type/appointment-type.service';
 
 
 
@@ -32,7 +34,9 @@ export class MedicalExaminationComponent implements OnInit {
     private diagnosisService: DiagnosisService,
     private medicalExaminationService : MedicanExaminationService,
     private activatedRoute: ActivatedRoute,
-    private cookieService : CookieService) { }
+    private cookieService : CookieService,
+    private appointmentRequestService : AppoinmentRequestService,
+    private appointmentTypesService : AppointmentTypeService) { }
 
     ngOnInit() {
       this.patientId = this.activatedRoute.snapshot.url[1].path;
@@ -51,6 +55,11 @@ export class MedicalExaminationComponent implements OnInit {
           this.diagnosises = data;
         }, (error) => alert(error.text)
       );
+      this.appointmentTypesService.getAll().subscribe(
+        (data: any) => {
+          this.appointmentTypes = data;
+        }, (error) => alert(error.text)
+      );
     }
     changeSelectedMedicine(filterVal: any) {
       this.medicine = filterVal;
@@ -58,6 +67,10 @@ export class MedicalExaminationComponent implements OnInit {
   
     changeSelectedDiagnosis(filterVal: any) {
       this.diagnosis = filterVal;
+    }
+    changeSelectedAppType(filterVal: any) {
+      this.selectedType = filterVal;
+      console.log(this.selectedType);
     }
     initialized() {
       if (this.medicines != undefined && this.diagnosises != undefined) {
@@ -74,6 +87,16 @@ export class MedicalExaminationComponent implements OnInit {
           alert(error.text);
         }
       )
+    }
+    zakazi() {
+      var dat = "" + this.model.year + "-" + this.model.month + "-" + this.model.day;
+      this.appointmentRequestService.addRequest(this.doctorId, this.patientId, dat, this.selectedType).subscribe(
+        (data : any) => {
+          console.log(data)
+        }, (error) => {
+          alert(error.text);
+        }
+      )  
     }
 
 }

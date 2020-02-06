@@ -42,8 +42,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { PatientsDoctorHomePageComponent } from './patients-doctor-home-page/patients-doctor-home-page.component';
 import {SearchDoctorsComponent} from './search-doctors/search-doctors.component';
 import { ManageClinicComponent } from './manage-clinic/manage-clinic.component';
+import { ManageAppointmentRequestComponent } from './manage-appointment-request/manage-appointment-request.component';
 
-const appRoutes: Routes = [ 
+const appRoutes: Routes = [
+  { path: '', component: HomePageComponent },  
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'pendingUsers', component: PendingUsersComponent },
@@ -62,7 +64,8 @@ const appRoutes: Routes = [
   { path: 'calendar',component : CalendarComponent},
   { path : 'searchDoctors',component :SearchDoctorsComponent},
   { path: 'manageClinic',component : ManageClinicComponent},
-  { path: '', component: HomePageComponent }, 
+  {path: 'rasporedjivanjePregleda',component : ManageAppointmentRequestComponent},
+  
   
 
 
@@ -98,6 +101,7 @@ const appRoutes: Routes = [
     PatientsDoctorHomePageComponent,
     SearchDoctorsComponent,
     ManageClinicComponent,
+    ManageAppointmentRequestComponent,
   ],
   imports: [
     BrowserModule,

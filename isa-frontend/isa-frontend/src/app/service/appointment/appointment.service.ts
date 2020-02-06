@@ -84,4 +84,30 @@ export class AppointmentService {
       })
     )
   }
+  makeNewAppointment(
+    appointmentRequestId : any,
+    doctor : any,
+    patient : any,
+    room : any,
+    date : any,
+    type : any,
+  ) {
+  return this.http.post("http://localhost:9090/api/administrator/makeAppointment", {
+    appointmentRequestId : appointmentRequestId,
+    doctor : doctor,
+    patient : patient,
+    room : room,
+    date : date,
+    type : type,
+  })
+    .pipe(
+      map((response: any) => {
+        const data = response
+        return data;
+      }),
+      catchError((err: any) => {
+        return throwError(JSON.parse(err.text));
+      })
+    )
+}
 }
