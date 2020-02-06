@@ -40,12 +40,15 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { PatientsDoctorHomePageComponent } from './patients-doctor-home-page/patients-doctor-home-page.component';
-import {SearchDoctorsComponent} from './search-doctors/search-doctors.component';
+import { SearchDoctorsComponent } from './search-doctors/search-doctors.component';
 import { ManageClinicComponent } from './manage-clinic/manage-clinic.component';
 import { ManageAppointmentRequestComponent } from './manage-appointment-request/manage-appointment-request.component';
+import { ManageDoctorsComponent } from './manage-doctors/manage-doctors.component';
+import { ManageAppointmentTypesComponent } from './manage-appointment-types/manage-appointment-types.component';
+import { ManageRoomsComponent } from './manage-rooms/manage-rooms.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomePageComponent },  
+  { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'pendingUsers', component: PendingUsersComponent },
@@ -56,17 +59,20 @@ const appRoutes: Routes = [
   { path: 'addClinic', component: AddClinicComponent },
   { path: 'addAdmin', component: RegisterAdminComponent },
   { path: 'addCCAdmin', component: RegisterCcadminComponent },
-  { path: 'searchClinics',component : SearchClinicComponent},
-  { path: 'changePassword', component : ChangePasswordComponent},
+  { path: 'searchClinics', component: SearchClinicComponent },
+  { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'patients', component: SearchPatientsComponent },
-  { path: 'predefAppointments',component : PredefAppointmentsComponent},
-  { path: 'createPredefAppointment',component : CreatePredefAppointmentComponent},
-  { path: 'calendar',component : CalendarComponent},
-  { path : 'searchDoctors',component :SearchDoctorsComponent},
-  { path: 'manageClinic',component : ManageClinicComponent},
-  {path: 'rasporedjivanjePregleda',component : ManageAppointmentRequestComponent},
-  
-  
+  { path: 'predefAppointments', component: PredefAppointmentsComponent },
+  { path: 'createPredefAppointment', component: CreatePredefAppointmentComponent },
+  { path: 'calendar', component: CalendarComponent },
+  { path: 'searchDoctors', component: SearchDoctorsComponent },
+  { path: 'manageClinic', component: ManageClinicComponent },
+  { path: 'rasporedjivanjePregleda', component: ManageAppointmentRequestComponent },
+  { path: 'dodavanjeDoktora', component: ManageDoctorsComponent },
+  { path: 'dodavanjeTipaPregleda',component : ManageAppointmentTypesComponent},
+  { path: 'dodavanjeSobe',component : ManageRoomsComponent},
+
+
 
 
 ]
@@ -102,6 +108,9 @@ const appRoutes: Routes = [
     SearchDoctorsComponent,
     ManageClinicComponent,
     ManageAppointmentRequestComponent,
+    ManageDoctorsComponent,
+    ManageAppointmentTypesComponent,
+    ManageRoomsComponent,
   ],
   imports: [
     BrowserModule,

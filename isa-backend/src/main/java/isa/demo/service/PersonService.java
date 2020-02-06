@@ -1,6 +1,7 @@
 package isa.demo.service;
 
 import isa.demo.dto.request.AdministratorDTORequest;
+import isa.demo.dto.request.CreateDoctorDTORequest;
 import isa.demo.model.*;
 import isa.demo.model.security.Authority;
 import isa.demo.repository.PersonRepository;
@@ -38,6 +39,7 @@ public class PersonService implements UserDetailsService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
 
 
     @Override
@@ -126,6 +128,22 @@ public class PersonService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(newPassword));
         user.setStatus("ACTIVE");
         personRepository.save(user);
+
+    }
+    public Person saveDoctor(CreateDoctorDTORequest d){
+        Doctor doctor = new Doctor();
+        doctor.setFirstName(d.getFirstName());
+        doctor.setLastName(d.getLastName());
+        doctor.setUsername(d.getUsername());
+        doctor.setPassword(passwordEncoder.encode("123"));
+        doctor.setAddress(d.getAddress());
+        doctor.setClinic(clinicService.findOneById(d.getClinic_id()));
+        doctor.setStatus(d.getStatus());
+        List<Authority> auth =authorityService.findByName("ROLE_MEDICAL_STAFF");
+        doctor.setAuthorities(auth);
+        doctor.setEnabled(true);
+
+        return personRepository.save(doctor);
 
     }
 

@@ -1,9 +1,11 @@
 package isa.demo.controller;
 
 import isa.demo.dto.request.AdministratorDTORequest;
+import isa.demo.dto.request.CreateDoctorDTORequest;
 import isa.demo.dto.request.MakeAppointmentDTORequest;
 import isa.demo.dto.response.AdministratorDTOResponse;
 import isa.demo.dto.response.AppointmentRequestDTOResponse;
+import isa.demo.dto.response.CreateDoctorDTOResponse;
 import isa.demo.dto.response.PersonDTOResponse;
 import isa.demo.exception.ResourceConflictException;
 import isa.demo.model.*;
@@ -151,6 +153,12 @@ public class AdministratorController {
         a.setPrice(10000);
         Appointment a1 = appointmentService.save(a);
         return new ResponseEntity<>(null,HttpStatus.OK);
+    }
+    @RequestMapping(consumes = "application/json",value = "/createDoctor",method = RequestMethod.POST)
+    public ResponseEntity<?> createDoctor(@RequestBody CreateDoctorDTORequest doc) {
+        personService.saveDoctor(doc);
+
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
 }
