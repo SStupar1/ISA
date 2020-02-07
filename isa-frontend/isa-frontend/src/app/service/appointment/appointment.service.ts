@@ -30,10 +30,10 @@ export class AppointmentService {
         })
       );
   }
-  reserve(appId : any,currentUserId :any) {
-    return this.http.post("http://localhost:9090/api/appointment/reservePredef",{
-        patientId : currentUserId,
-        appointmentId : appId
+  reserve(appId: any, currentUserId: any) {
+    return this.http.post("http://localhost:9090/api/appointment/reservePredef", {
+      patientId: currentUserId,
+      appointmentId: appId
 
     })
       .pipe(
@@ -46,68 +46,95 @@ export class AppointmentService {
         })
       );
   }
-  createPredef(currentDoctor : any,
-    currentRoom : any,
-    currentType : any,
-    cena : any,
-    popust :any,
-    dat :any){
-    return this.http.post("http://localhost:9090/api/appointment/createPredef",{
-      doctorId :currentDoctor,
-      roomId : currentRoom,
-      typeId : currentType,
-      cena : cena,
-      popust : popust,
-      dat : dat 
-      
+  createPredef(currentDoctor: any,
+    currentRoom: any,
+    currentType: any,
+    cena: any,
+    popust: any,
+    dat: any) {
+    return this.http.post("http://localhost:9090/api/appointment/createPredef", {
+      doctorId: currentDoctor,
+      roomId: currentRoom,
+      typeId: currentType,
+      cena: cena,
+      popust: popust,
+      dat: dat
+
     })
-    .pipe(
-      map((response: any) => {
-        const data = response
-        return data;
-      }),
-      catchError((err: any) => {
-        return throwError(err);
-      })
-    );
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(err);
+        })
+      );
   }
-  getByDoctorIdForCalendar(doctorId : string) {
+  getByDoctorIdForCalendar(doctorId: string) {
     console.log("http://localhost:9090/api/appointment/getAppointmentsForDoctor?doctorId=a" + doctorId)
     return this.http.get("http://localhost:9090/api/appointment/getAppointmentsForDoctor?doctorId=a" + doctorId)
-    .pipe(
-      map((response: any) => {
-        const data = response;
-        return data;
-      }),
-      catchError((err: any) => {
-        return throwError(JSON.parse(err.text));
-      })
-    )
+      .pipe(
+        map((response: any) => {
+          const data = response;
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      )
   }
   makeNewAppointment(
-    appointmentRequestId : any,
-    doctor : any,
-    patient : any,
-    room : any,
-    date : any,
-    type : any,
+    appointmentRequestId: any,
+    doctor: any,
+    patient: any,
+    room: any,
+    date: any,
+    type: any,
   ) {
-  return this.http.post("http://localhost:9090/api/administrator/makeAppointment", {
-    appointmentRequestId : appointmentRequestId,
-    doctor : doctor,
-    patient : patient,
-    room : room,
-    date : date,
-    type : type,
-  })
-    .pipe(
-      map((response: any) => {
-        const data = response
-        return data;
-      }),
-      catchError((err: any) => {
-        return throwError(JSON.parse(err.text));
+    return this.http.post("http://localhost:9090/api/administrator/makeAppointment", {
+      appointmentRequestId: appointmentRequestId,
+      doctor: doctor,
+      patient: patient,
+      room: room,
+      date: date,
+      type: type,
+    })
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(JSON.parse(err.text));
+        })
+      )
+  }
+  getIncomingAppointments() {
+    return this.http.get("http://localhost:9090/api/appointment/getIncomingAppointments")
+      .pipe(
+        map((response: any) => {
+          const data = response
+          return data;
+        }),
+        catchError((err: any) => {
+          return throwError(err);
+        })
+      );
+    }
+    cancle(appId : any) {
+      return this.http.post("http://localhost:9090/api/appointment/cancleAppointment",{
+          id : appId
+  
       })
-    )
-}
+        .pipe(
+          map((response: any) => {
+            const data = response
+            return data;
+          }),
+          catchError((err: any) => {
+            return throwError(err);
+          })
+        );
+    }
 }
