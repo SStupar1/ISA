@@ -2,16 +2,15 @@ package isa.demo.service;
 
 import isa.demo.dto.request.CreatePredefAppointmentDTORequest;
 import isa.demo.dto.request.PredefAppointmentDTORequest;
-import isa.demo.model.Appointment;
-import isa.demo.model.Doctor;
-import isa.demo.model.Patient;
-import isa.demo.model.Room;
+import isa.demo.model.*;
 import isa.demo.repository.AppointmentRepository;
 import isa.demo.repository.AppointmentTypeRepository;
 import isa.demo.repository.PersonRepository;
 import isa.demo.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -74,5 +73,15 @@ public class AppointmentService {
         appointmentRepository.save(a);
 
 
+    }
+
+    public void cancle(Person p, Long id){
+        Appointment a = appointmentRepository.findOneById(id);
+        if(p instanceof Patient){
+            a.setPatient(null);
+            appointmentRepository.save(a);
+        }else{
+            appointmentRepository.deleteAppointment(id);
+        }
     }
 }
