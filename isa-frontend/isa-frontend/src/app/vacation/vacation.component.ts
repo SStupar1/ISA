@@ -34,8 +34,6 @@ export class VacationComponent implements OnInit {
     this.fromDate = this.calendar.getToday();
     this.toDate = this.calendar.getNext(this.calendar.getToday(), 'd', 3);
     this.helper = new JwtHelperService()
-    if (this.helper.decodeToken(this.cookieService.get('token')) == null)
-      this.router.navigate(['/login']);
     this.userMail = this.helper.decodeToken(this.cookieService.get('token')).sub;
     this.getUser();
   }

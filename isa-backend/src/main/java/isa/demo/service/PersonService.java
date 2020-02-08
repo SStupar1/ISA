@@ -2,6 +2,7 @@ package isa.demo.service;
 
 import isa.demo.dto.request.AdministratorDTORequest;
 import isa.demo.dto.request.CreateDoctorDTORequest;
+import isa.demo.dto.request.RegistrationDTORequest;
 import isa.demo.model.*;
 import isa.demo.model.security.Authority;
 import isa.demo.repository.PersonRepository;
@@ -55,24 +56,35 @@ public class PersonService implements UserDetailsService {
     /**
      * funkcija za upisivanje osobe u bazu,posto je person nad klasa u isa hijerarhiji
      * moze se koristiti za upis svih vrsta osoba,pacijente doktore itd..
-     * @param person
      * @param status
      * @param role
      * @return
      */
-    public Person save(Person person,String status,String role) {
-        person.setPassword(passwordEncoder.encode(person.getPassword()));
-        person.setEnabled(true);
+    public Person save(RegistrationDTORequest reg, String status, String role) {
+        Patient p = new Patient();
+        p.setFirstName(reg.getFirstName());
+        p.setLastName(reg.getLastName());
+        p.setUsername(reg.getUsername());
+        p.setAddress(reg.getAddress());
+        p.setJmbg(reg.getJmbg());
+        p.setPassword(passwordEncoder.encode(reg.getPassword()));
+        p.setEnabled(true);
+
+
+
+
+
 
         if(status != null){
-            person.setStatus(status);
+            p.setStatus(status);
         }
         List<Authority> auth =authorityService.findByName(role);
-        person.setAuthorities(auth);
+        p.setAuthorities(auth);
 
-        return personRepository.save(person);
+        return personRepository.save(p);
 
     }
+
     public Person saveAdministrator(AdministratorDTORequest a, String status, String role){
         Administrator admin = new Administrator();
         admin.setFirstName(a.getFirstName());
