@@ -48,6 +48,8 @@ import { ManageAppointmentTypesComponent } from './manage-appointment-types/mana
 import { ManageRoomsComponent } from './manage-rooms/manage-rooms.component';
 import { IncAppointmentsComponent } from './inc-appointments/inc-appointments.component';
 import { VacationComponent } from './vacation/vacation.component';
+import { VacationService } from './service/vacation/vacation.service';
+import { VacationRequestsComponent } from './vacation-requests/vacation-requests.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -73,7 +75,9 @@ const appRoutes: Routes = [
   { path: 'dodavanjeDoktora', component: ManageDoctorsComponent },
   { path: 'dodavanjeTipaPregleda',component : ManageAppointmentTypesComponent},
   { path: 'dodavanjeSobe',component : ManageRoomsComponent},
-  { path: 'cancelAppointment',component : IncAppointmentsComponent}
+  { path: 'cancelAppointment',component : IncAppointmentsComponent},
+  { path: 'zahtevZaGodisnjiOdmor',component : VacationComponent},
+  { path: 'odobriOdbiZahteveZaGodisnji',component : VacationRequestsComponent}
 
 
 
@@ -115,6 +119,7 @@ const appRoutes: Routes = [
     ManageRoomsComponent,
     IncAppointmentsComponent,
     VacationComponent,
+    VacationRequestsComponent,
   ],
   imports: [
     BrowserModule,

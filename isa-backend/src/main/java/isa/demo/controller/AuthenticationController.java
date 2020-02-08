@@ -1,5 +1,6 @@
 package isa.demo.controller;
 
+import isa.demo.dto.request.RegistrationDTORequest;
 import isa.demo.dto.response.PersonDTOResponse;
 import isa.demo.exception.ResourceConflictException;
 import isa.demo.model.Patient;
@@ -74,7 +75,7 @@ public class AuthenticationController {
      * @return
      */
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public ResponseEntity<?> addUser(@RequestBody Patient patient, UriComponentsBuilder ucBuilder){
+    public ResponseEntity<?> addUser(@RequestBody RegistrationDTORequest patient, UriComponentsBuilder ucBuilder){
         Person person = personService.findOneByUsername(patient.getUsername());
         if(person != null){
             throw new ResourceConflictException(person.getId(), "Username already exists");
