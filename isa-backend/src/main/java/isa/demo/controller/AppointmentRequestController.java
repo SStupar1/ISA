@@ -21,6 +21,8 @@ public class AppointmentRequestController {
     private AppointmentRequestService appointmentRequestService;
 
     @RequestMapping(value = "/addAppointmentRequest",consumes = "application/json", method = RequestMethod.POST)
+
+
     public ResponseEntity<?> addAppointmentType(@RequestBody AppointmentRequestDTORequest request){
         int year = Integer.parseInt(request.getDate().split("-")[0]);
         int month = Integer.parseInt(request.getDate().split("-")[1]);

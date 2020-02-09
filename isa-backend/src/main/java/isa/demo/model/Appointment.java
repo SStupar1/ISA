@@ -32,6 +32,8 @@ public class Appointment {
     @Column(name = "status")
     private String status;
 
+
+
     @JsonManagedReference
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Room room;

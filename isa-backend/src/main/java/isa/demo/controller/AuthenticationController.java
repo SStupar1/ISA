@@ -55,6 +55,7 @@ public class AuthenticationController {
             throws AuthenticationException, IOException {
         final Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername()
+
                         ,authenticationRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -66,6 +67,7 @@ public class AuthenticationController {
         jwt =tokenUtils.generateToken(person);
         int expiresIn = tokenUtils.getExpiredIn();
         return ResponseEntity.ok(new UserTokenState(jwt,expiresIn));
+
     }
 
     /**

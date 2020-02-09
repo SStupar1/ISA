@@ -29,6 +29,8 @@ public class DiagnosisController {
         }
         diagnosis = diagnosisService.save(diagnosisDTO);
         return new ResponseEntity<>(new DiagnosisDTOResponse(diagnosis), HttpStatus.CREATED);
+
+
     }
     @RequestMapping(value = "/getAll")
     public ResponseEntity<?> getAllMedicine() {

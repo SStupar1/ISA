@@ -55,6 +55,8 @@ class AdministratorControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+
+
     @Test
     void makeAppoitment() throws Exception {
         final String baseUrl = "http://localhost:"+randomServerPort+URL_PREFIX+"makeAppointment";
