@@ -90,8 +90,13 @@ public class ClinicController {
         List<AppointmentDTOResponse> apps = new ArrayList<>();
         List<PersonDTOResponse> doctors = new ArrayList<>();
         for (Appointment a:appointments) {
-            apps.add(new AppointmentDTOResponse(a));
+            try{
+                apps.add(new AppointmentDTOResponse(a));}
+            catch (Exception e){
+
+            }
         }
+        System.out.println(apps);
         for (AppointmentDTOResponse a:apps) {
             System.out.println(a.getDoctor().getClinic().getName());
             if(doctors.contains(a.getDoctor().getClinic()) || !a.getDoctor().getClinic().getName().equals(clinicName))
@@ -118,5 +123,6 @@ public class ClinicController {
         }
         return new ResponseEntity<>(new ClinicDTOResponse(),HttpStatus.BAD_REQUEST);
     }
+
 
 }
