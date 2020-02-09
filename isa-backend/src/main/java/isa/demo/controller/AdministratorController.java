@@ -142,7 +142,11 @@ public class AdministratorController {
         Doctor d = (Doctor) personService.findOneById(request.getDoctor());
         Patient p = (Patient) personService.findOneById(request.getPatient());
         Room r = roomService.findOneById(request.getRoom());
-        appointmentRequestService.delete(request.getAppointmentRequestId());
+        try {
+            appointmentRequestService.delete(request.getAppointmentRequestId());
+        }catch (Exception e){
+
+        }
         a.setPatient(p);
         a.setDoctor(d);
         a.setRoom(r);
@@ -151,7 +155,8 @@ public class AdministratorController {
         a.setDate(request.getDate());
         a.setDiscount(10);
         a.setPrice(10000);
-        Appointment a1 = appointmentService.save(a);
+        try{
+            Appointment a1 = appointmentService.save(a);}catch (Exception e){}
         return new ResponseEntity<>(null,HttpStatus.OK);
     }
     @RequestMapping(consumes = "application/json",value = "/createDoctor",method = RequestMethod.POST)
@@ -160,5 +165,6 @@ public class AdministratorController {
 
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
+
 
 }

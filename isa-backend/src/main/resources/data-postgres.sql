@@ -63,10 +63,6 @@ insert into medicine (name) values ('brufen');
 insert into medicine (name) values ('antibiotik');
 insert into medicine (name) values ('vinjak');
 
-insert into recipe(medicine,patient_id,nurse_id) values ('penicilin',1,5);
-insert into recipe(medicine,patient_id,nurse_id) values ('penicilin',1,5);
-insert into recipe(medicine,patient_id) values ('penicilin',1);
-insert into recipe(medicine,patient_id) values ('penicilin',1);
 
 insert into appointment_request(doctor_id,patient_id,date,appointment_type) values (2,1,'2020-07-01','pregled');
 insert into appointment_request(doctor_id,patient_id,date,appointment_type) values (2,4,'2020-07-01','operacija');
